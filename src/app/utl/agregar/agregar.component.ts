@@ -16,14 +16,15 @@ export class AgregarComponent {
     edad:0
   }
 
-  @Output() onNuevosAlumnos:EventEmitter<AlumnosUtl>=new EventEmitter();
+  /*@Output() onNuevosAlumnos:EventEmitter<AlumnosUtl>=new EventEmitter();*/
   
   constructor(private UtlService:UtlService){}
   
   agregar(){
     //console.log(this.alumnosUtl)
     /*this.alumnosUtl.push(this.regAlum);*/
-    this.onNuevosAlumnos.emit(this.regAlum);
+   // this.onNuevosAlumnos.emit(this.regAlum);
+   this.UtlService.agregarAlumno(this.regAlum);
     this.regAlum={
       nombre:'',
       edad:0
