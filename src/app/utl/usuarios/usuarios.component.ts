@@ -10,20 +10,30 @@ export class UsuariosComponent implements OnInit {
 
  
   public form = new FormGroup({
-    nombre: new FormControl('',[Validators.required]),
+    nombre: new FormControl('',[Validators.required,Validators.minLength(3)]),
     password: new FormControl('',[Validators.required]),
   })
 
   constructor(private formBuilder:FormBuilder) { }
 
-  obtenerError(){
+  obtenerErrorNombre(){
     var nom=this.form.get('nombre');
-    var pass=this.form.get('password');
-    if(nom?.hasError('required'))
+    if(nom?.hasError('required')){ 
     return 'El campo nombre es requerido'
+  }
+  if(nom?.hasError('minLength')){  
+    return 'La longitud minima es de 3 caracteres'
+  }
+  return '';
+}
+  obtenerErrorPassword(){
+    var pass=this.form.get('password');
+    if(pass?.hasError('required'))
+    return 'El campo password es requerido'
   }
   ngOnInit(): void {
   }
+  
   guardarUsuario(){
     console.log('Registro Guardado');
   }
